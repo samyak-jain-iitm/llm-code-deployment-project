@@ -1,6 +1,7 @@
 fastapi==0.100.0
 uvicorn[standard]==0.22.0
-PyGithub==1.59.1 requests==2.31.0
+PyGithub==1.59.1
+requests==2.31.0
 pydantic==1.10.11
 python-multipart==0.0.6
 openai==2.1.0
