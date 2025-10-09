@@ -1,4 +1,4 @@
-# LLM Code Deployment - Student API (instructions)
+# LLM Code Deployment
 
 ## Setup (env)
 Set environment variables:
@@ -12,4 +12,5 @@ Example (Linux/macOS):
 export STUDENT_SECRET="your-secret-from-form"
 export GITHUB_TOKEN="ghp_xxx..."
 export GITHUB_OWNER="my-org"   # optional
+
 
