@@ -97,19 +97,19 @@ def generate_project_files(brief: str, attachments: list, checks: list, task: st
                 - The HTML should be styled (inline <style> or CSS in <head>).
                 """
             else:
-                files = get_repo_files(token=os.environ.get("GITHUB_TOKEN"), repo_name=repo_name, owner=owner)
+                repo_files = get_repo_files(token=os.environ.get("GITHUB_TOKEN"), repo_name=repo_name, owner=owner)
 
                 prompt = f"""
                 <SYSTEM> You are an expert frontend developer. 
                 <USER>: You have been provided with the following existing files in the repo:
                 Code file (index.html):
                 "
-                {files.get('index.html', '')}
+                {repo_files.get('index.html', '')}
                 "
 
                 readme file (README.md):
                 "
-                {files.get('README.md', '')}
+                {repo_files.get('README.md', '')}
                 "
 
                 you have been given the following brief for changes to be made to the existing code file:
