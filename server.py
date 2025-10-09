@@ -89,31 +89,13 @@ def process_request_and_deploy(payload: dict):
         logger.info("Processing task in %s", tempdir)
         # 1) Save attachments
         attachments = payload.get("attachments", []) or []
-        saved_attachments = {}
-        for att in attachments:
-            name = att["name"]
-            datauri = att["url"]
-            if "," not in datauri:
-                logger.warning("Attachment missing comma separator, skipping: %s", name)
-                continue
-            head, b64 = datauri.split(",", 1)
-            # Only support base64 attachments
-            if ";base64" in head:
-                raw = base64.b64decode(b64)
-                fp = os.path.join(tempdir, name)
-                with open(fp, "wb") as f:
-                    f.write(raw)
-                saved_attachments[name] = fp
-                logger.info("Saved attachment %s -> %s", name, fp)
-            else:
-                logger.info("Attachment not base64, skipping save: %s", name)
 
         # 2) Generate files (LLM-assisted or template fallback)
         round_num = payload.get("round", 1)
-        repo_name = payload["task"].replace(" ", "-").replace("/", "-")
+        repo_name = payload["task"].replace(" ", "-")
         files = generate_project_files(
             brief=payload["brief"],
-            attachments=saved_attachments,
+            attachments=attachments,
             checks=payload.get("checks", []),
             task=payload["task"],
             repo_name=repo_name,
