@@ -8,7 +8,7 @@ from github_utils import get_repo_files
 current_year = datetime.now().year
 load_dotenv()
 
-OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
+AI_API_KEY = os.environ.get("AI_PIPE_KEY")
 owner = os.environ.get("GITHUB_OWNER", "student")
 USE_OPENAI = bool(OPENAI_API_KEY)
 
@@ -47,7 +47,7 @@ def generate_project_files(brief: str, attachments: list, checks: list, task: st
 
     if USE_OPENAI:
         try:
-            client = OpenAI(api_key=OPENAI_API_KEY)
+            client = OpenAI(api_key=OPENAI_API_KEY, base_url="https://aipipe.org/openai/v1")
 
             attachments_text = ""
             if attachments:
