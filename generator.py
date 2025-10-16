@@ -47,7 +47,7 @@ def generate_project_files(brief: str, attachments: list, checks: list, task: st
 
     if USE_OPENAI:
         try:
-            client = OpenAI(api_key=OPENAI_API_KEY, base_url="https://aipipe.org/openai/v1")
+            client = OpenAI(api_key=AI_API_KEY, base_url="https://aipipe.org/openai/v1")
 
             attachments_text = ""
             if attachments:
@@ -153,4 +153,5 @@ def generate_project_files(brief: str, attachments: list, checks: list, task: st
         files['LICENSE'] = MIT_LICENSE_TEXT
 
     return files
+
 
