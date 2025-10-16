@@ -10,7 +10,7 @@ load_dotenv()
 
 AI_API_KEY = os.environ.get("AI_PIPE_KEY")
 owner = os.environ.get("GITHUB_OWNER", "student")
-USE_OPENAI = bool(OPENAI_API_KEY)
+USE_OPENAI = bool(AI_API_KEY)
 
 # Minimal MIT LICENSE text template
 MIT_LICENSE_TEXT = f"""
@@ -153,3 +153,4 @@ def generate_project_files(brief: str, attachments: list, checks: list, task: st
         files['LICENSE'] = MIT_LICENSE_TEXT
 
     return files
+
